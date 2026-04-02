@@ -56,4 +56,26 @@ class Pedidos extends BaseController
         $data['productos'] = $productosRepo[$categoria] ?? [];
         return view('pedidos/productos_marca', $data);
     }
+    public function guardar_categoria()
+{
+    $model = new \App\Models\CategoriaModel();
+    
+    $cliente_id = $this->request->getPost('cliente_id');
+    $nombre = $this->request->getPost('nombre_categoria');
+
+    // Datos a insertar
+    $data = [
+        'nombre' => $nombre,
+        'icono'  => '📦', // Icono por defecto para nuevas categorías
+        'color'  => 'bg-purple'
+    ];
+
+    if ($model->insert($data)) {
+        // Volvemos a la pantalla de selección de categorías del cliente actual
+        return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
+    } else {
+        // Si hay error, podrías manejarlo aquí
+        return "Error al guardar la categoría";
+    }
+}
 }
