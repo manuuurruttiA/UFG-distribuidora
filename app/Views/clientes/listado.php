@@ -159,7 +159,7 @@
     </div>
 </div>
 
-<<script>
+<script>
     const modal = document.getElementById('modalCliente');
     
     modal.addEventListener('show.bs.modal', function (event) {
