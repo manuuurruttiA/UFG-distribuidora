@@ -66,13 +66,13 @@ class Pedidos extends BaseController
     public function borrar_categoria($id, $cliente_id)
 {
     $model = new CategoriaModel();
+    $model->delete($id);
 
-    // Verificamos que la categoría existe antes de borrar
-    if ($model->find($id)) {
-        $model->delete($id);
+    // Si el cliente_id es 0, significa que venimos del panel de Admin
+    if ($cliente_id == 0) {
+        return redirect()->to(base_url('admin'));
     }
 
-    // Volvemos a la pantalla de selección de categorías del cliente
     return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
 }
 }
