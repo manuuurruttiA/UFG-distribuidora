@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\CategoriaModel;
+use App\Models\ProductoModel;
 // Nota: Aquí luego usaremos un ProductoModel cuando lo crees
 // use App\Models\ProductoModel; 
 
