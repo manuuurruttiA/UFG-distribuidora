@@ -159,28 +159,23 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
     const modal = document.getElementById('modalCliente');
     
     modal.addEventListener('show.bs.modal', function (event) {
-        // Botón que activó el modal
         const button = event.relatedTarget;
-        
-        // Extraer info de los atributos data-*
         const id = button.getAttribute('data-id');
         const nombre = button.getAttribute('data-nombre');
         
-        // Actualizar el título del modal
         document.getElementById('m-nombre').textContent = nombre;
         
-        // VINCULACIÓN DE BOTONES
-        // Nota: Usamos site_url() o base_url() para construir la ruta limpia
-        const baseUrl = "<?= site_url() ?>"; 
+        // Usa base_url() para evitar problemas de rutas relativas
+        const baseUrl = "<?= base_url() ?>"; 
         
         document.getElementById('link-pedidos').href = baseUrl + "/clientes/historial_pedidos/" + id;
         document.getElementById('link-cuenta').href = baseUrl + "/clientes/historial_cuenta/" + id;
-        
-        // Este es el botón clave para los nuevos pedidos
         document.getElementById('link-nuevo').href = baseUrl + "/clientes/nuevo_pedido/" + id;
     });
 </script>
