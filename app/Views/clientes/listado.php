@@ -120,7 +120,7 @@
 <header class="header-ufg text-center">
     <div class="container">
         <a href="<?= base_url('/') ?>">
-            <img src="<?= base_url('assets/images/logo_ufg.png') ?>" alt="UFG Logo" class="logo-small mb-3">
+            <img src="<?= base_url('assets/images/logo_ufgw.png') ?>" alt="UFG Logo" class="logo-small mb-3">
         </a>
         <h1 class="fw-bold">Listado de Clientes</h1>
     </div>
