@@ -32,7 +32,7 @@ class Admin extends BaseController
 
 public function guardar_producto()
 {
-    $model = new \App\\Models\ProductoModel();
+    $model = new \App\Models\ProductoModel();
     
     $img = $this->request->getFile('foto');
     $nombreImagen = 'default_producto.png'; 
