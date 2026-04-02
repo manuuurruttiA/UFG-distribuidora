@@ -23,6 +23,6 @@ $routes->get('admin/editar_productos/(:num)', 'Admin::editar_productos/$1');
 $routes->post('admin/actualizar_precio', 'Admin::actualizar_precio');
 // Rutas de Administración de Catálogo
 $routes->get('admin', 'Admin::index');
-$routes->get('admin/productos/(:num)', 'Admin::ver_productos/$1');
+$routes->get('admin/productos/(:num)', 'Admin::editar_productos/$1');
 $routes->post('admin/guardar_producto', 'Admin::guardar_producto');
 $routes->post('admin/actualizar_precio', 'Admin::actualizar_precio');

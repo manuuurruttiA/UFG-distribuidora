@@ -18,24 +18,30 @@ class Admin extends BaseController
 
     // Ver productos de una marca específica para editarlos
     public function editar_productos($categoria_id)
-    {
-        $model = new CategoriaModel();
-        $categoria = $model->find($categoria_id);
+{
+    $catModel = new \App\Models\CategoriaModel();
+    $prodModel = new \App\Models\ProductoModel();
 
-        if (!$categoria) {
-            return redirect()->to(base_url('admin'))->with('error', 'Marca no encontrada');
-        }
+    $data['categoria'] = $catModel->find($categoria_id);
+    // Buscamos productos que pertenezcan a esta marca
+    $data['productos'] = $prodModel->where('categoria_id', $categoria_id)->findAll();
 
-        $data['categoria'] = $categoria;
-        
-        // Por ahora usamos datos fijos, luego será: $productoModel->where('categoria_id', $categoria_id)->findAll();
-        $data['productos'] = [
-            ['id' => 1, 'nombre' => 'Ejemplo Producto A', 'precio' => 1500],
-            ['id' => 2, 'nombre' => 'Ejemplo Producto B', 'precio' => 2000],
-        ];
+    return view('admin/productos_edit', $data);
+}
 
-        return view('admin/productos_edit', $data);
-    }
+public function guardar_producto()
+{
+    $model = new \App\Models\ProductoModel();
+    $data = [
+        'categoria_id'    => $this->request->getPost('categoria_id'),
+        'nombre'          => $this->request->getPost('nombre'),
+        'unidad'          => $this->request->getPost('unidad'),
+        'precio_compra'   => $this->request->getPost('precio_compra'),
+        'margen_ganancia' => $this->request->getPost('margen_ganancia'),
+    ];
+    $model->insert($data);
+    return redirect()->to(base_url('admin/productos/' . $data['categoria_id']));
+}
 
     // Método para guardar cambios de precios (vía POST)
     public function actualizar_precio()
