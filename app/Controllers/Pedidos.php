@@ -17,28 +17,33 @@ class Pedidos extends BaseController
     }
 
     public function guardar_categoria()
-{
-    $model = new \App\Models\CategoriaModel();
-    
-    $cliente_id = $this->request->getPost('cliente_id');
-    $nombre = $this->request->getPost('nombre_categoria');
+    {
+        $model = new CategoriaModel();
+        $cliente_id = $this->request->getPost('cliente_id');
+        
+        // Manejo de la imagen de la marca
+        $img = $this->request->getFile('foto_categoria');
+        $nombreImagen = 'default_marca.png';
 
-    $data = [
-        'nombre' => $nombre,
-        'icono'  => '📦', 
-        'color'  => 'bg-purple'
-    ];
+        if ($img && $img->isValid() && !$img->hasMoved()) {
+            $nombreImagen = $img->getRandomName();
+            $img->move(FCPATH . 'uploads/marcas', $nombreImagen);
+        }
 
-    if ($model->insert($data)) {
-        // SI EL CLIENTE ES 0, VOLVEMOS AL ADMIN
+        $data = [
+            'nombre' => $this->request->getPost('nombre_categoria'),
+            'imagen' => $nombreImagen,
+            'icono'  => '📦', 
+            'color'  => 'bg-purple'
+        ];
+
+        $model->insert($data);
+        
         if ($cliente_id == "0") {
             return redirect()->to(base_url('admin'));
         }
-        
-        // SI NO, VOLVEMOS A LA VISTA DE PEDIDOS DEL CLIENTE
         return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
     }
-}
 
     public function productos($cliente_id, $categoria_id_encoded)
 {

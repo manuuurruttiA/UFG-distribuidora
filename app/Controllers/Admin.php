@@ -30,30 +30,30 @@ class Admin extends BaseController
 }
 
 public function guardar_producto()
-{
-    $model = new \App\Models\ProductoModel();
-    
-    // Configuración de la imagen
-    $img = $this->request->getFile('foto');
-    $nombreImagen = 'default_producto.png'; // Imagen por defecto
+    {
+        $model = new ProductoModel();
+        
+        // Manejo de la imagen
+        $img = $this->request->getFile('foto');
+        $nombreImagen = 'default_producto.png';
 
-    if ($img->isValid() && !$img->hasMoved()) {
-        $nombreImagen = $img->getRandomName(); // Genera un nombre único para que no se pisen
-        $img->move(FCPATH . 'uploads/productos', $nombreImagen);
+        if ($img && $img->isValid() && !$img->hasMoved()) {
+            $nombreImagen = $img->getRandomName();
+            $img->move(FCPATH . 'uploads/productos', $nombreImagen);
+        }
+
+        $data = [
+            'categoria_id'    => $this->request->getPost('categoria_id'),
+            'nombre'          => $this->request->getPost('nombre'),
+            'unidad'          => $this->request->getPost('unidad'),
+            'precio_compra'   => $this->request->getPost('precio_compra'),
+            'margen_ganancia' => $this->request->getPost('margen_ganancia'),
+            'imagen'          => $nombreImagen
+        ];
+
+        $model->insert($data);
+        return redirect()->back();
     }
-
-    $data = [
-        'categoria_id'    => $this->request->getPost('categoria_id'),
-        'nombre'          => $this->request->getPost('nombre'),
-        'unidad'          => $this->request->getPost('unidad'),
-        'precio_compra'   => $this->request->getPost('precio_compra'),
-        'margen_ganancia' => $this->request->getPost('margen_ganancia'),
-        'imagen'          => $nombreImagen
-    ];
-
-    $model->insert($data);
-    return redirect()->back();
-}
 
     // Método para guardar cambios de precios (vía POST)
     public function actualizar_precio()
