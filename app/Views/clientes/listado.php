@@ -150,10 +150,6 @@
                         <div class="client-name"><?= $c['nombre'] ?></div>
                         <div class="client-meta"><?= $c['direccion'] ?></div>
                     </div>
-                    <div class="action-btns">
-                        <button class="btn-action">ℹ️</button>
-                        <button class="btn-action">🔗</button>
-                    </div>
                 </div>
             </div>
         </div>
