@@ -28,35 +28,12 @@
     </header>
 
     <main class="container my-5">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 card-module">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">Inventario</h3>
-                        <p class="card-text">Control de stock y productos disponibles.</p>
-                        <a href="inventario.php" class="btn btn-primary">Entrar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 card-module">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">Ventas</h3>
-                        <p class="card-text">Registro de facturas y pedidos de clientes.</p>
-                        <a href="ventas.php" class="btn btn-success">Entrar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 card-module">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">Reportes</h3>
-                        <p class="card-text">Estadísticas de rendimiento y finanzas.</p>
-                        <a href="reportes.php" class="btn btn-warning">Ver más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-12">
+    <a href="<?= base_url('clientes') ?>" class="btn btn-primary w-100 py-4 shadow" style="border-radius: 20px;">
+        <span class="fs-1 d-block">👥</span>
+        <span class="fw-bold fs-4">GESTIÓN DE CLIENTES</span>
+    </a>
+</div>
     </main>
 
     <footer class="text-center py-4 text-muted">
