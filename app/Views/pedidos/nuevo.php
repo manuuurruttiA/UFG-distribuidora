@@ -103,8 +103,9 @@
     const clienteId = "<?= $cliente_id ?>";
     const baseUrl = "<?= base_url() ?>";
     
-    // Codificamos en Base64 para que caracteres como '´' no rompan la URL
-    const nombreCodificado = btoa(nombre); 
+    // 1. Convertimos a Base64
+    // 2. Reemplazamos los '=' por nada para que la URL sea 100% limpia
+    let nombreCodificado = btoa(nombre).replace(/=/g, ""); 
     
     window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + nombreCodificado;
 }
