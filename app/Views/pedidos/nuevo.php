@@ -98,12 +98,12 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function seleccionarMarca(nombre) {
-        document.getElementById('tituloMarca').innerText = 'Productos ' + nombre;
-        const myModal = new bootstrap.Modal(document.getElementById('modalProductos'));
-        myModal.show();
+        // Redirige a la vista de productos de esa marca
+        const clienteId = "<?= $cliente_id ?>";
+        const baseUrl = "<?= base_url() ?>";
+        window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + encodeURIComponent(nombre);
     }
 </script>
 </body>
