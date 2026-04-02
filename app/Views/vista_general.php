@@ -102,7 +102,7 @@
         <div class="row align-items-center g-5">
             
             <div class="col-lg-6">
-                <img src="<?= base_url('assets/images/logo_ufg.png') ?>" alt="UFG Logo" class="logo-img">
+                <img src="<?= base_url('assets/images/logo_ufgw.png') ?>" alt="UFG Logo" class="logo-img">
                 
                 <h1 class="hero-title">
                     Gestionando la Red<br>
