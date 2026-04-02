@@ -6,9 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0a0a0a; color: #fff; }
-        .admin-card { background: #1a1a1a; border: 1px solid #333; border-radius: 15px; overflow: hidden; }
+        .admin-card { background: #1a1a1a; border: 1px solid #333; border-radius: 15px; overflow: hidden; height: 100%; transition: 0.3s; }
+        .admin-card:hover { border-color: #ff5722; }
         .btn-accent { background: #ff5722; color: white; border-radius: 10px; border: none; }
-        .img-brand { width: 100%; height: 120px; object-fit: cover; border-bottom: 1px solid #333; }
+        .img-brand { width: 100%; height: 140px; object-fit: cover; border-bottom: 1px solid #333; }
     </style>
 </head>
 <body>
@@ -22,16 +23,21 @@
 </nav>
 
 <div class="container">
-    <div class="row g-4">
+    <div class="row">
         <?php foreach ($categorias as $c): ?>
-        <div class="col-md-3">
-            <div class="admin-card text-center">
-                <img src="<?= base_url('uploads/marcas/'.($c['imagen'] ?? 'default_marca.png')) ?>" class="img-brand">
-                <div class="p-3">
-                    <h5 class="fw-bold m-0"><?= $c['nombre'] ?></h5>
-                    <div class="d-flex gap-2 mt-3">
-                        <a href="<?= base_url('admin/productos/'.$c['id']) ?>" class="btn btn-outline-light btn-sm w-100">Ver Productos</a>
-                        <a href="<?= base_url('pedidos/borrar_categoria/'.$c['id'].'/0') ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('¿Borrar?')">×</a>
+        <div class="col-6 col-md-3 mb-4">
+            <div class="admin-card">
+                <img src="<?= base_url('uploads/marcas/' . ($c['imagen'] ?: 'default_marca.png')) ?>" 
+                     class="img-brand" 
+                     onerror="this.src='<?= base_url('uploads/marcas/default_marca.png') ?>'">
+                
+                <div class="p-3 text-center">
+                    <h5 class="m-0 fw-bold text-uppercase"><?= $c['nombre'] ?></h5>
+                    <div class="d-flex gap-2 mt-3 justify-content-center">
+                        <a href="<?= base_url('admin/productos/'.$c['id']) ?>" class="btn btn-outline-light btn-sm w-100">Productos</a>
+                        <a href="<?= base_url('pedidos/borrar_categoria/'.$c['id'].'/0') ?>" 
+                           class="btn btn-outline-danger btn-sm" 
+                           onclick="return confirm('¿Borrar marca y todos sus productos?')">×</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +48,7 @@
 
 <div class="modal fade" id="modalNueva" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark border-secondary">
+        <div class="modal-content bg-dark border-secondary text-white">
             <form action="<?= base_url('pedidos/guardar_categoria') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body p-4">
                     <h4 class="text-center mb-4">Nueva Marca</h4>
@@ -58,7 +64,7 @@
                         <input type="file" name="foto_categoria" class="form-control bg-dark text-white border-secondary" accept="image/*">
                     </div>
 
-                    <button type="submit" class="btn btn-accent w-100 py-2 fw-bold">GUARDAR MARCA</button>
+                    <button type="submit" class="btn btn-accent w-100 py-3 fw-bold">GUARDAR MARCA</button>
                 </div>
             </form>
         </div>

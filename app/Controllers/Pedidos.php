@@ -17,33 +17,32 @@ class Pedidos extends BaseController
     }
 
     public function guardar_categoria()
-    {
-        $model = new CategoriaModel();
-        $cliente_id = $this->request->getPost('cliente_id');
-        
-        // Manejo de la imagen de la marca
-        $img = $this->request->getFile('foto_categoria');
-        $nombreImagen = 'default_marca.png';
+{
+    $model = new \App\Models\CategoriaModel();
+    $cliente_id = $this->request->getPost('cliente_id');
+    
+    $img = $this->request->getFile('foto_categoria');
+    $nombreImagen = 'default_marca.png';
 
-        if ($img && $img->isValid() && !$img->hasMoved()) {
-            $nombreImagen = $img->getRandomName();
-            $img->move(FCPATH . 'uploads/marcas', $nombreImagen);
-        }
-
-        $data = [
-            'nombre' => $this->request->getPost('nombre_categoria'),
-            'imagen' => $nombreImagen,
-            'icono'  => '📦', 
-            'color'  => 'bg-purple'
-        ];
-
-        $model->insert($data);
-        
-        if ($cliente_id == "0") {
-            return redirect()->to(base_url('admin'));
-        }
-        return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
+    if ($img && $img->isValid() && !$img->hasMoved()) {
+        $nombreImagen = $img->getRandomName();
+        $img->move(FCPATH . 'uploads/marcas', $nombreImagen);
     }
+
+    $data = [
+        'nombre' => $this->request->getPost('nombre_categoria'),
+        'imagen' => $nombreImagen,
+        'icono'  => '📦', 
+        'color'  => 'bg-purple'
+    ];
+
+    $model->insert($data);
+    
+    if ($cliente_id == "0") {
+        return redirect()->to(base_url('admin'));
+    }
+    return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
+}
 
     public function productos($cliente_id, $categoria_id_encoded)
 {
