@@ -100,11 +100,14 @@
 
 <script>
     function seleccionarMarca(nombre) {
-        // Redirige a la vista de productos de esa marca
-        const clienteId = "<?= $cliente_id ?>";
-        const baseUrl = "<?= base_url() ?>";
-        window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + encodeURIComponent(nombre);
-    }
+    const clienteId = "<?= $cliente_id ?>";
+    const baseUrl = "<?= base_url() ?>";
+    
+    // Codificamos en Base64 para que caracteres como '´' no rompan la URL
+    const nombreCodificado = btoa(nombre); 
+    
+    window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + nombreCodificado;
+}
 </script>
 </body>
 </html>

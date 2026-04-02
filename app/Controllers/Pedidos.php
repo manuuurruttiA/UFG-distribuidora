@@ -19,26 +19,27 @@ class Pedidos extends BaseController
     }
 
     // Vista de Productos por Marca
-    public function productos($cliente_id, $marca)
-    {
-        $data['cliente_id'] = $cliente_id;
-        $data['marca'] = urldecode($marca);
+    public function productos($cliente_id, $marcaCodificada)
+{
+    $data['cliente_id'] = $cliente_id;
+    
+    // Decodificamos el Base64 para recuperar el nombre original (ej: "Grangy´s")
+    $marcaOriginal = base64_decode($marcaCodificada);
+    $data['marca'] = $marcaOriginal;
 
-        // Simulación de productos (esto vendría de tu DB)
-        $todosLosProductos = [
-            'McCain' => [
-                ['id' => 101, 'nombre' => 'Papas Tradicionales 2.5kg', 'precio' => 4500],
-                ['id' => 102, 'nombre' => 'Papas Noisette 1kg', 'precio' => 3200],
-            ],
-            'PATY' => [
-                ['id' => 201, 'nombre' => 'Hamburguesa Clásica x4', 'precio' => 2800],
-                ['id' => 202, 'nombre' => 'Paty Large x2', 'precio' => 1900],
-            ],
-            // Agregar las demás marcas aquí...
-        ];
+    $todosLosProductos = [
+        'Grangy´s' => [ // Asegúrate de que la clave coincida exactamente
+            ['id' => 301, 'nombre' => 'Medallón de Pollo x4', 'precio' => 2500],
+            ['id' => 302, 'nombre' => 'Nuggets Premium 1kg', 'precio' => 4100],
+        ],
+        'McCain' => [
+            ['id' => 101, 'nombre' => 'Papas Tradicionales 2.5kg', 'precio' => 4500],
+        ],
+        // ... resto de marcas
+    ];
 
-        $data['productos'] = $todosLosProductos[$data['marca']] ?? [];
+    $data['productos'] = $todosLosProductos[$marcaOriginal] ?? [];
 
-        return view('pedidos/productos_marca', $data);
-    }
+    return view('pedidos/productos_marca', $data);
+}
 }
