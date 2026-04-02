@@ -40,34 +40,29 @@ class Pedidos extends BaseController
     }
 }
 
-    public function productos($cliente_id, $categoriaSlug)
-    {
-        $data['cliente_id'] = $cliente_id;
-        $categoria = base64_decode($categoriaSlug);
-        $data['marca'] = $categoria; 
+    public function productos($cliente_id, $categoria_id_encoded)
+{
+    // 1. Decodificamos el ID de la categoría (antes usabas el nombre, ahora usamos el ID por seguridad)
+    $categoria_id = base64_decode($categoria_id_encoded);
+    
+    $catModel = new \App\Models\CategoriaModel();
+    $prodModel = new \App\Models\ProductoModel();
 
-        $productosRepo = [
-            'Rebozados Pollo' => [
-                ['id' => 1, 'nombre' => 'Patitas de Pollo x 3kg', 'precio' => 0],
-                ['id' => 2, 'nombre' => 'Medallones de Pollo x 3kg', 'precio' => 0],
-            ],
-            'Rebozados Carne' => [
-                ['id' => 5, 'nombre' => 'Medallones de Carne x 3kg', 'precio' => 0],
-            ],
-            'Vegetales' => [
-                ['id' => 7, 'nombre' => 'Espinaca picada x 2.5kg', 'precio' => 0],
-            ],
-            'Hamburguesas' => [
-                ['id' => 11, 'nombre' => 'Paty Tradicional x 12 u.', 'precio' => 0],
-            ],
-            'Papas Fritas' => [
-                ['id' => 14, 'nombre' => 'McCain Tradicional 9mm x 2.5kg', 'precio' => 0],
-            ],
-        ];
-
-        $data['productos'] = $productosRepo[$categoria] ?? [];
-        return view('pedidos/productos_marca', $data);
+    // 2. Buscamos la categoría para mostrar el nombre en la vista
+    $categoria = $catModel->find($categoria_id);
+    
+    if (!$categoria) {
+        return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
     }
+
+    $data['cliente_id'] = $cliente_id;
+    $data['marca'] = $categoria['nombre']; 
+
+    // 3. CONSULTA REAL: Traemos los productos de la DB que pertenecen a esta categoría
+    $data['productos'] = $prodModel->where('categoria_id', $categoria_id)->findAll();
+
+    return view('pedidos/productos_marca', $data);
+}
 
     public function borrar_categoria($id, $cliente_id)
 {

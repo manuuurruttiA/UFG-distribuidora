@@ -48,12 +48,13 @@
 </div>
 
 <script>
-    function seleccionarCategoria(nombre) {
-        const clienteId = "<?= $cliente_id ?>";
-        const baseUrl = "<?= base_url() ?>";
-        let slug = btoa(nombre).replace(/=/g, "");
-        window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + slug;
-    }
+    function seleccionarCategoria(id) { // Ahora recibe el ID
+    const clienteId = "<?= $cliente_id ?>";
+    const baseUrl = "<?= base_url() ?>";
+    // Codificamos el ID en base64 para mantener tu lógica de URLs
+    let idEncoded = btoa(id).replace(/=/g, "");
+    window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + idEncoded;
+}
 </script>
 
 </body>
