@@ -25,7 +25,7 @@
 <div class="container-fluid min-vh-100 d-flex flex-column">
     
     <div class="logo-container mb-4">
-        <img src="<?= base_url('images/logo_ufg.png') ?>" alt="Urutia Food Group Logo" class="logo-img shadow-sm p-3 bg-white rounded">
+        <img src="<?= base_url('/images/logo_ufg.png') ?>" alt="Urutia Food Group Logo" class="logo-img shadow-sm p-3 bg-white rounded">
         <h1 class="mt-3 fw-bold text-dark" style="font-size: 1.5rem;">UFG Distribuidora</h1>
         <p class="text-muted">Sistema de Gestión Local</p>
     </div>
