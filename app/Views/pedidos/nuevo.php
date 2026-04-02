@@ -52,12 +52,14 @@
         </div>
         <?php endforeach; ?>
 
-        <div class="col-6 col-md-4">
-            <div class="add-category-card" data-bs-toggle="modal" data-bs-target="#modalNueva">
-                <div class="display-6 text-secondary">+</div>
-                <div class="small text-secondary fw-bold">Nueva Categoría</div>
-            </div>
-        </div>
+        <form action="<?= base_url('pedidos/guardar_categoria') ?>" method="POST">
+    <div class="modal-body p-4 text-center">
+        <h4 class="fw-bold mb-3 text-white">Nuevo Rubro</h4>
+        <input type="hidden" name="cliente_id" value="<?= $cliente_id ?>">
+        <input type="text" name="nombre_categoria" class="form-control bg-dark border-secondary text-white py-3 mb-3" placeholder="Nombre (ej: Postres)" required>
+        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">GUARDAR</button>
+    </div>
+</form>
     </div>
 </div>
 
