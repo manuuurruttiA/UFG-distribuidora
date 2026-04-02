@@ -38,6 +38,7 @@ class Pedidos extends BaseController
         // SI NO, VOLVEMOS A LA VISTA DE PEDIDOS DEL CLIENTE
         return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
     }
+}
 
     public function productos($cliente_id, $categoriaSlug)
     {
