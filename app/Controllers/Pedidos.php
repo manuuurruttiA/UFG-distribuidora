@@ -30,7 +30,7 @@ class Pedidos extends BaseController
         ];
 
         if ($model->insert($data)) {
-            return redirect()->to(base_url('admin/marcas/' . $cliente_id));
+            return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
         }
     } // <--- ESTA LLAVE ES LA QUE FALTABA
 
