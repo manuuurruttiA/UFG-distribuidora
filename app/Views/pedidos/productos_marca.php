@@ -11,38 +11,49 @@
         
         .product-card { 
             background: var(--card-base); border-radius: 15px; 
-            border: 1px solid #333; padding: 1.5rem; margin-bottom: 1rem;
+            border: 1px solid #333; padding: 1rem; margin-bottom: 1rem;
+        }
+        .product-img {
+            width: 70px; height: 70px; object-fit: cover; 
+            border-radius: 12px; border: 1px solid #444;
+            margin-right: 15px;
         }
         .qty-control {
-            display: flex; align-items: center; gap: 15px;
-            background: rgba(255,255,255,0.05); border-radius: 10px; padding: 5px 15px;
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(255,255,255,0.05); border-radius: 10px; padding: 5px 12px;
         }
         .btn-qty { 
-            background: none; border: none; color: white; font-size: 1.5rem; font-weight: bold;
-            width: 40px; height: 40px;
+            background: none; border: none; color: white; font-size: 1.5rem; font-weight: bold; line-height: 1;
         }
-        .btn-qty:active { color: var(--accent); }
     </style>
 </head>
 <body>
 
-<nav class="p-3 border-bottom border-secondary d-flex justify-content-between align-items-center">
-    <a href="<?= base_url('clientes/nuevo_pedido/'.$cliente_id) ?>" class="text-white text-decoration-none">← Marcas</a>
-    <h4 class="m-0 fw-bold text-accent"><?= strtoupper($marca) ?></h4>
-    <div style="width: 40px;"></div>
+<nav class="p-3 border-bottom border-secondary mb-3 d-flex justify-content-between align-items-center">
+    <a href="javascript:history.back()" class="text-white text-decoration-none">← Volver</a>
+    <h5 class="m-0 fw-bold text-uppercase"><?= $marca ?></h5>
+    <div style="width: 50px;"></div>
 </nav>
 
-<div class="container py-4">
-    <div class="row g-3">
-        <?php if(empty($productos)): ?>
-            <div class="col-12 text-center text-muted">No hay productos disponibles para esta marca.</div>
+<div class="container pb-5 mb-5">
+    <div class="row g-2">
+        <?php if (empty($productos)): ?>
+            <div class="col-12 text-center text-muted mt-5">No hay productos disponibles para esta marca.</div>
         <?php else: ?>
             <?php foreach ($productos as $p): ?>
             <div class="col-12 col-md-6">
                 <div class="product-card d-flex justify-content-between align-items-center">
-                    <div>
-                        <h5 class="fw-bold m-0"><?= $p['nombre'] ?></h5>
-                        <small class="text-success fw-bold">$<?= number_format($p['precio_venta'], 2) ?></small>
+                    <div class="d-flex align-items-center">
+                        <img src="<?= base_url('uploads/productos/' . ($p['imagen'] ?? 'default_producto.png')) ?>" 
+                             class="product-img" 
+                             alt="<?= $p['nombre'] ?>"
+                             onerror="this.src='<?= base_url('uploads/productos/default_producto.png') ?>'">
+                        
+                        <div>
+                            <h6 class="fw-bold m-0"><?= $p['nombre'] ?></h6>
+                            <small class="text-secondary"><?= $p['unidad'] ?></small><br>
+                            <span class="text-success fw-bold">$<?= number_format($p['precio_venta'], 2) ?></span>
+                        </div>
                     </div>
                     
                     <div class="qty-control">
@@ -58,7 +69,7 @@
 </div>
 
 <div class="fixed-bottom p-3 bg-dark border-top border-secondary">
-    <button class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow">
+    <button class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow" style="background-color: var(--accent); border:none;">
         CONTINUAR PEDIDO
     </button>
 </div>
@@ -71,5 +82,6 @@
         if (nuevo >= 0) el.innerText = nuevo;
     }
 </script>
+
 </body>
 </html>
