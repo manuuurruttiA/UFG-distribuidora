@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\CategoriaModel;
 
 class Pedidos extends BaseController
 {
