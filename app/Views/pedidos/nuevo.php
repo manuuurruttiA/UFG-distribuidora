@@ -8,107 +8,80 @@
     <style>
         :root { --bg-dark: #0a0a0a; --card-base: #1a1a1a; --accent: #ff5722; }
         body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', sans-serif; }
-        
         .header-nav { padding: 1.5rem; background: rgba(255,255,255,0.02); border-bottom: 1px solid #333; }
+        
+        /* Tarjetas de Categoría */
         .brand-card { 
             background: var(--card-base); border-radius: 20px; overflow: hidden; 
-            border: 1px solid #333; transition: 0.3s; cursor: pointer;
+            border: 1px solid #333; transition: 0.3s; cursor: pointer; min-height: 180px;
         }
         .brand-card:active { transform: scale(0.95); }
-        .brand-visual { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .brand-visual { height: 100px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         
-        /* Colores Marcas */
+        /* Tarjeta Agregar */
+        .add-category-card {
+            background: transparent; border: 2px dashed rgba(255,255,255,0.15); border-radius: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; min-height: 180px; transition: 0.3s;
+        }
+        .add-category-card:hover { border-color: var(--accent); background: rgba(255,87,34,0.05); }
+
         .bg-cyan { background: linear-gradient(45deg, #00dbde, #fc00ff); }
         .bg-pink { background: linear-gradient(45deg, #f093fb, #f5576c); }
         .bg-purple { background: linear-gradient(45deg, #667eea, #764ba2); }
         .bg-orange { background: linear-gradient(45deg, #ff9a9e, #fecfef); }
         .bg-danger { background: linear-gradient(45deg, #ff0844, #ffb199); }
-
-        .floating-cart {
-            position: fixed; bottom: 20px; right: 20px; 
-            background: var(--accent); color: white; padding: 15px 25px;
-            border-radius: 50px; font-weight: bold; shadow: 0 10px 20px rgba(0,0,0,0.5);
-            z-index: 1000; display: flex; align-items: center; gap: 10px;
-        }
     </style>
 </head>
 <body>
 
 <nav class="header-nav d-flex justify-content-between align-items-center">
-    <a href="<?= base_url('clientes') ?>" class="text-white text-decoration-none">← Volver</a>
+    <a href="<?= base_url('clientes') ?>" class="text-white text-decoration-none">← Clientes</a>
     <h5 class="m-0 fw-bold">NUEVO PEDIDO</h5>
     <div style="width: 50px;"></div>
 </nav>
 
 <div class="container py-4">
-    <div class="text-center mb-5">
-        <img src="<?= base_url('assets/images/logo_ufg.png') ?>" style="max-width: 150px;" class="mb-3">
-        <h2 class="fw-bold">Selecciona una Marca</h2>
-    </div>
-
     <div class="row g-3">
-        <?php foreach ($marcas as $m): ?>
+        <?php foreach ($categorias as $c): ?>
         <div class="col-6 col-md-4">
-            <div class="brand-card shadow-lg text-center" onclick="seleccionarMarca('<?= $m['nombre'] ?>')">
-                <div class="brand-visual <?= $m['color'] ?>">
-                    <?= $m['icon'] ?>
-                </div>
-                <div class="p-3">
-                    <h4 class="fw-bold m-0"><?= $m['nombre'] ?></h4>
-                </div>
+            <div class="brand-card shadow-lg text-center" onclick="seleccionarCategoria('<?= $c['nombre'] ?>')">
+                <div class="brand-visual <?= $c['color'] ?>"><?= $c['icon'] ?></div>
+                <div class="p-3"><h6 class="fw-bold m-0"><?= $c['nombre'] ?></h6></div>
             </div>
         </div>
         <?php endforeach; ?>
-    </div>
-</div>
 
-<div class="floating-cart shadow-lg">
-    <span>🛒</span>
-    <span>Ver Pedido ($0.00)</span>
-</div>
-
-<div class="modal fade" id="modalProductos" tabindex="-1">
-    <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-scrollable">
-        <div class="modal-content border-0" style="background: #111; color: white;">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title fw-bold" id="tituloMarca">Marca</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body p-0">
-                <div class="list-group list-group-flush">
-                    <div class="list-group-item bg-transparent border-secondary p-3 text-white">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-0 fw-bold">Producto Ejemplo 1kg</h6>
-                                <small class="text-success">$1,250.00</small>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <button class="btn btn-sm btn-outline-light">-</button>
-                                <span class="fw-bold">0</span>
-                                <button class="btn btn-sm btn-primary">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button class="btn btn-primary w-100 py-3 fw-bold" data-bs-dismiss="modal">LISTO</button>
+        <div class="col-6 col-md-4">
+            <div class="add-category-card" data-bs-toggle="modal" data-bs-target="#modalNueva">
+                <div class="display-6 text-secondary">+</div>
+                <div class="small text-secondary fw-bold">Nueva Categoría</div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="modalNueva" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content border-0" style="background: #111; border-radius: 25px; border: 1px solid #333;">
+            <div class="modal-body p-4 text-center">
+                <h4 class="fw-bold mb-3">Nuevo Rubro</h4>
+                <input type="text" id="nombreCat" class="form-control bg-dark border-secondary text-white py-3 mb-3" placeholder="Nombre (ej: Postres)">
+                <button onclick="alert('Funcionalidad de guardado en DB próximamente')" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    function seleccionarMarca(nombre) {
-    const clienteId = "<?= $cliente_id ?>";
-    const baseUrl = "<?= base_url() ?>";
-    
-    // 1. Convertimos a Base64
-    // 2. Reemplazamos los '=' por nada para que la URL sea 100% limpia
-    let nombreCodificado = btoa(nombre).replace(/=/g, ""); 
-    
-    window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + nombreCodificado;
-}
+    function seleccionarCategoria(nombre) {
+        const clienteId = "<?= $cliente_id ?>";
+        const baseUrl = "<?= base_url() ?>";
+        // Limpiamos la URL enviando Base64 sin signos '='
+        let slug = btoa(nombre).replace(/=/g, "");
+        window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + slug;
+    }
 </script>
 </body>
 </html>
