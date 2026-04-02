@@ -9,6 +9,7 @@
         :root {
             --bg-dark: #0a0a0a;
             --accent-orange: #ff5722;
+            --accent-blue: #007bff;
             --card-bg: rgba(255, 255, 255, 0.05);
         }
 
@@ -19,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* Fondo con gradiente radial sutil */
         .main-wrapper {
             min-height: 100vh;
             background: radial-gradient(circle at 10% 20%, rgba(255, 87, 34, 0.1) 0%, transparent 40%),
@@ -27,6 +27,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 2rem 0;
         }
 
         .logo-img {
@@ -42,9 +43,7 @@
             margin-bottom: 1.5rem;
         }
 
-        .text-accent {
-            color: var(--accent-orange);
-        }
+        .text-accent { color: var(--accent-orange); }
 
         /* Estilo de la Tarjeta Glassmorphism */
         .glass-card {
@@ -52,11 +51,12 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
-            padding: 3rem;
+            padding: 2.5rem;
             transition: all 0.3s ease;
             text-decoration: none;
             display: block;
             color: white;
+            height: 100%;
         }
 
         .glass-card:hover {
@@ -64,6 +64,10 @@
             border-color: var(--accent-orange);
             transform: translateY(-10px);
             color: white;
+        }
+
+        .card-admin:hover {
+            border-color: var(--accent-blue);
         }
 
         .btn-main {
@@ -74,6 +78,8 @@
             padding: 12px 30px;
             border: none;
             transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-main:hover {
@@ -82,16 +88,21 @@
         }
 
         .stats-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #666;
+            color: #888;
             display: block;
         }
 
         .stats-value {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
+        }
+
+        @media (max-width: 991px) {
+            .hero-title { font-size: 2.5rem; }
+            .glass-card { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -101,48 +112,60 @@
     <div class="container">
         <div class="row align-items-center g-5">
             
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <img src="<?= base_url('assets/images/logo_ufgw.png') ?>" alt="UFG Logo" class="logo-img">
                 
                 <h1 class="hero-title">
-                    Gestionando la Red<br>
-                    <span class="text-accent">Cliente por Cliente.</span>
+                    Control Total de<br>
+                    <span class="text-accent">Distribución.</span>
                 </h1>
                 
-                <p class="lead text-secondary mb-5" style="max-width: 450px;">
-                    Archivo centralizado de gestión para <b>Urrutia Food Group</b>. Acceso rápido a facturación, pedidos y logística en tiempo real.
+                <p class="lead text-secondary mb-5">
+                    Sistema central de <b>Urrutia Food Group</b>. <br>
+                    Gestione ventas en calle y logística de productos desde un solo lugar.
                 </p>
 
-                <div class="d-flex gap-3">
-                    <a href="<?= base_url('clientes') ?>" class="btn btn-main shadow-lg">Explorar Clientes</a>
-                    <div class="ms-4 border-start ps-4 d-none d-md-block">
-                        <span class="stats-value">100%</span>
-                        <span class="stats-label">Sincronizado</span>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="<?= base_url('clientes') ?>" class="btn btn-main shadow-lg">Comenzar Preventa</a>
+                    <div class="ms-3 border-start ps-4 d-none d-md-block">
+                        <span class="stats-value">Online</span>
+                        <span class="stats-label">Sincronización</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <a href="<?= base_url('clientes') ?>" class="glass-card text-center">
-                    <div class="mb-4">
-                        <div class="display-1 text-accent mb-3">👥</div>
-                        <h2 class="fw-bold">Gestión de Clientes</h2>
-                        <p class="text-secondary">Click para abrir el listado maestro y gestión de cuentas.</p>
-                    </div>
+            <div class="col-lg-7">
+                <div class="row g-4">
                     
-                    <div class="mt-4 pt-4 border-top border-secondary">
-                        <div class="row">
-                            <div class="col-6">
-                                <span class="stats-label">Zonas</span>
-                                <span class="stats-value">4</span>
+                    <div class="col-md-6">
+                        <a href="<?= base_url('clientes') ?>" class="glass-card text-center">
+                            <div class="mb-4">
+                                <div class="display-3 text-accent mb-3">👥</div>
+                                <h3 class="fw-bold">Ventas</h3>
+                                <p class="text-secondary small">Preventa, toma de pedidos y gestión de clientes.</p>
                             </div>
-                            <div class="col-6">
-                                <span class="stats-label">Status</span>
-                                <span class="text-success small">● Online</span>
+                            <div class="mt-4 pt-3 border-top border-secondary">
+                                <span class="stats-label">Acceso</span>
+                                <span class="stats-value text-success">Preventistas</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </a>
+
+                    <div class="col-md-6">
+                        <a href="<?= base_url('admin') ?>" class="glass-card card-admin text-center">
+                            <div class="mb-4">
+                                <div class="display-3 text-primary mb-3">📦</div>
+                                <h3 class="fw-bold">Logística</h3>
+                                <p class="text-secondary small">Carga de marcas, edición de productos y precios.</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-top border-secondary">
+                                <span class="stats-label">Acceso</span>
+                                <span class="stats-value text-warning">Administración</span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
             </div>
 
         </div>
