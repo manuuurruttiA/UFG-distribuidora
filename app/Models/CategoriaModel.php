@@ -9,5 +9,5 @@ class CategoriaModel extends Model
     protected $table            = 'categorias';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['nombre', 'icono', 'color'];
+    protected $allowedFields = ['nombre', 'icono', 'color', 'imagen']; // Agregá 'imagen'
 }

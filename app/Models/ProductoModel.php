@@ -10,13 +10,7 @@ class ProductoModel extends Model
     protected $primaryKey = 'id';
 
     // IMPORTANTE: precio_venta NO va aquí porque es virtual
-    protected $allowedFields = [
-        'categoria_id', 
-        'nombre', 
-        'unidad', 
-        'precio_compra', 
-        'margen_ganancia'
-    ];
+    protected $allowedFields = ['categoria_id', 'nombre', 'unidad', 'precio_compra', 'margen_ganancia', 'imagen']; // Agregá 'imagen'
 
     protected $returnType = 'array';
 }
