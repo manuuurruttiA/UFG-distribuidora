@@ -18,21 +18,22 @@ class Pedidos extends BaseController
     }
 
     public function guardar_categoria()
-    {
-        $model = new CategoriaModel();
-        
-        $cliente_id = $this->request->getPost('cliente_id');
-        $nombre = $this->request->getPost('nombre_categoria');
+{
+    $model = new \App\Models\CategoriaModel();
+    
+    // Recibimos los datos del formulario
+    $cliente_id = $this->request->getPost('cliente_id');
+    $nombre = $this->request->getPost('nombre_categoria');
 
-        $data = [
-            'nombre' => $nombre,
-            'icono'  => '📦', 
-            'color'  => 'bg-purple'
-        ];
+    $data = [
+        'nombre' => $nombre,
+        'icono'  => '📦', // Icono por defecto
+        'color'  => 'bg-purple' // Color por defecto
+    ];
 
-        if ($model->insert($data)) {
-            return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
-        }
+    if ($model->insert($data)) {
+        // Redirigimos de vuelta a la selección de categorías
+        return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
     }
 
     public function productos($cliente_id, $categoriaSlug)
