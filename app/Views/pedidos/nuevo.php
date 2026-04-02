@@ -45,13 +45,24 @@
 <div class="container py-4">
     <div class="row g-3">
         <?php foreach ($categorias as $c): ?>
-        <div class="col-6 col-md-4">
-            <div class="brand-card shadow-lg text-center" onclick="seleccionarCategoria('<?= $c['nombre'] ?>')">
-                <div class="brand-visual <?= $c['color'] ?>"><?= $c['icono'] ?></div>
-                <div class="p-3"><h6 class="fw-bold m-0"><?= $c['nombre'] ?></h6></div>
-            </div>
+<div class="col-6 col-md-4">
+    <div class="position-relative">
+        
+        <a href="<?= base_url('pedidos/borrar_categoria/' . $c['id'] . '/' . $cliente_id) ?>" 
+           class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle shadow"
+           onclick="return confirm('¿Seguro quieres eliminar este rubro?')"
+           style="z-index: 10; width: 30px; height: 30px; line-height: 15px;">
+           ×
+        </a>
+
+        <div class="brand-card shadow-lg text-center" onclick="seleccionarCategoria('<?= $c['nombre'] ?>')">
+            <div class="brand-visual <?= $c['color'] ?>"><?= $c['icono'] ?></div>
+            <div class="p-3"><h6 class="fw-bold m-0"><?= $c['nombre'] ?></h6></div>
         </div>
-        <?php endforeach; ?>
+        
+    </div>
+</div>
+<?php endforeach; ?>
 
         <div class="col-6 col-md-4">
             <div class="add-category-card" data-bs-toggle="modal" data-bs-target="#modalNueva">

@@ -62,4 +62,17 @@ class Pedidos extends BaseController
         $data['productos'] = $productosRepo[$categoria] ?? [];
         return view('pedidos/productos_marca', $data);
     }
+
+    public function borrar_categoria($id, $cliente_id)
+{
+    $model = new CategoriaModel();
+
+    // Verificamos que la categoría existe antes de borrar
+    if ($model->find($id)) {
+        $model->delete($id);
+    }
+
+    // Volvemos a la pantalla de selección de categorías del cliente
+    return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
+}
 }
