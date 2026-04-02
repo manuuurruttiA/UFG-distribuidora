@@ -48,12 +48,15 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark border-secondary">
             <form action="<?= base_url('pedidos/guardar_categoria') ?>" method="POST">
-                <div class="modal-body p-4">
-                    <h4 class="text-center mb-4">Nueva Marca / Rubro</h4>
-                    <input type="hidden" name="cliente_id" value="0"> <input type="text" name="nombre_categoria" class="form-control bg-dark text-white border-secondary py-3" placeholder="Nombre (ej: Helados)" required>
-                    <button type="submit" class="btn btn-accent w-100 mt-3 py-3 fw-bold">CREAR MARCA</button>
-                </div>
-            </form>
+    <div class="modal-body p-4">
+        <h4 class="text-center mb-4">Nueva Marca / Rubro</h4>
+        
+        <input type="hidden" name="cliente_id" value="0"> 
+        
+        <input type="text" name="nombre_categoria" class="form-control bg-dark text-white border-secondary py-3" placeholder="Nombre (ej: Helados)" required>
+        <button type="submit" class="btn btn-accent w-100 mt-3 py-3 fw-bold">CREAR MARCA</button>
+    </div>
+</form>
         </div>
     </div>
 </div>

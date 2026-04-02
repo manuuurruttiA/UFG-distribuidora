@@ -17,22 +17,27 @@ class Pedidos extends BaseController
     }
 
     public function guardar_categoria()
-    {
-        $model = new CategoriaModel();
-        
-        $cliente_id = $this->request->getPost('cliente_id');
-        $nombre = $this->request->getPost('nombre_categoria');
+{
+    $model = new \App\Models\CategoriaModel();
+    
+    $cliente_id = $this->request->getPost('cliente_id');
+    $nombre = $this->request->getPost('nombre_categoria');
 
-        $data = [
-            'nombre' => $nombre,
-            'icono'  => '📦', 
-            'color'  => 'bg-purple'
-        ];
+    $data = [
+        'nombre' => $nombre,
+        'icono'  => '📦', 
+        'color'  => 'bg-purple'
+    ];
 
-        if ($model->insert($data)) {
-            return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
+    if ($model->insert($data)) {
+        // SI EL CLIENTE ES 0, VOLVEMOS AL ADMIN
+        if ($cliente_id == "0") {
+            return redirect()->to(base_url('admin'));
         }
-    } // <--- ESTA LLAVE ES LA QUE FALTABA
+        
+        // SI NO, VOLVEMOS A LA VISTA DE PEDIDOS DEL CLIENTE
+        return redirect()->to(base_url('clientes/nuevo_pedido/' . $cliente_id));
+    }
 
     public function productos($cliente_id, $categoriaSlug)
     {
@@ -65,11 +70,10 @@ class Pedidos extends BaseController
 
     public function borrar_categoria($id, $cliente_id)
 {
-    $model = new CategoriaModel();
+    $model = new \App\Models\CategoriaModel();
     $model->delete($id);
 
-    // Si el cliente_id es 0, significa que venimos del panel de Admin
-    if ($cliente_id == 0) {
+    if ($cliente_id == "0") {
         return redirect()->to(base_url('admin'));
     }
 
