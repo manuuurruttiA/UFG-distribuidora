@@ -42,7 +42,7 @@
                 <div class="product-card d-flex justify-content-between align-items-center">
                     <div>
                         <h5 class="fw-bold m-0"><?= $p['nombre'] ?></h5>
-                        <small class="text-success fw-bold">$<?= number_format($p['precio'], 2) ?></small>
+                        <small class="text-success fw-bold">$<?= number_format($p['precio_venta'], 2) ?></small>
                     </div>
                     
                     <div class="qty-control">

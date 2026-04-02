@@ -36,7 +36,7 @@
     <div class="row g-3">
         <?php foreach ($categorias as $c): ?>
         <div class="col-6 col-md-4">
-            <div class="brand-card shadow-lg text-center" onclick="seleccionarCategoria('<?= $c['nombre'] ?>')">
+            <div class="brand-card shadow-lg text-center" onclick="seleccionarCategoria('<?= $c['id'] ?>')">
                 <div class="brand-visual <?= $c['color'] ?>"><?= $c['icono'] ?></div>
                 <div class="p-3">
                     <h6 class="fw-bold m-0"><?= $c['nombre'] ?></h6>
