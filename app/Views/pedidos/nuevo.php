@@ -26,6 +26,7 @@
         }
         .add-category-card:hover { border-color: var(--accent); background: rgba(255,87,34,0.05); }
 
+        /* Degradados para las categorías */
         .bg-cyan { background: linear-gradient(45deg, #00dbde, #fc00ff); }
         .bg-pink { background: linear-gradient(45deg, #f093fb, #f5576c); }
         .bg-purple { background: linear-gradient(45deg, #667eea, #764ba2); }
@@ -46,31 +47,35 @@
         <?php foreach ($categorias as $c): ?>
         <div class="col-6 col-md-4">
             <div class="brand-card shadow-lg text-center" onclick="seleccionarCategoria('<?= $c['nombre'] ?>')">
-                <div class="brand-visual <?= $c['color'] ?>"><?= $c['icon'] ?></div>
+                <div class="brand-visual <?= $c['color'] ?>"><?= $c['icono'] ?></div>
                 <div class="p-3"><h6 class="fw-bold m-0"><?= $c['nombre'] ?></h6></div>
             </div>
         </div>
         <?php endforeach; ?>
 
-        <form action="<?= base_url('pedidos/guardar_categoria') ?>" method="POST">
-    <div class="modal-body p-4 text-center">
-        <h4 class="fw-bold mb-3 text-white">Nuevo Rubro</h4>
-        <input type="hidden" name="cliente_id" value="<?= $cliente_id ?>">
-        <input type="text" name="nombre_categoria" class="form-control bg-dark border-secondary text-white py-3 mb-3" placeholder="Nombre (ej: Postres)" required>
-        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">GUARDAR</button>
-    </div>
-</form>
+        <div class="col-6 col-md-4">
+            <div class="add-category-card" data-bs-toggle="modal" data-bs-target="#modalNueva">
+                <div class="display-6 text-secondary">+</div>
+                <div class="small text-secondary fw-bold">Nueva Categoría</div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="modal fade" id="modalNueva" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered px-3">
         <div class="modal-content border-0" style="background: #111; border-radius: 25px; border: 1px solid #333;">
-            <div class="modal-body p-4 text-center">
-                <h4 class="fw-bold mb-3">Nuevo Rubro</h4>
-                <input type="text" id="nombreCat" class="form-control bg-dark border-secondary text-white py-3 mb-3" placeholder="Nombre (ej: Postres)">
-                <button onclick="alert('Funcionalidad de guardado en DB próximamente')" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">GUARDAR</button>
-            </div>
+            <form action="<?= base_url('pedidos/guardar_categoria') ?>" method="POST">
+                <div class="modal-body p-4 text-center">
+                    <h4 class="fw-bold mb-3 text-white">Nuevo Rubro</h4>
+                    
+                    <input type="hidden" name="cliente_id" value="<?= $cliente_id ?>">
+                    
+                    <input type="text" name="nombre_categoria" class="form-control bg-dark border-secondary text-white py-3 mb-3" placeholder="Nombre (ej: Postres)" required>
+                    
+                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">GUARDAR CATEGORÍA</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -80,10 +85,13 @@
     function seleccionarCategoria(nombre) {
         const clienteId = "<?= $cliente_id ?>";
         const baseUrl = "<?= base_url() ?>";
-        // Limpiamos la URL enviando Base64 sin signos '='
+        
+        // Codificamos en Base64 y limpiamos caracteres prohibidos por CodeIgniter
         let slug = btoa(nombre).replace(/=/g, "");
+        
         window.location.href = baseUrl + "/pedidos/productos/" + clienteId + "/" + slug;
     }
 </script>
+
 </body>
 </html>

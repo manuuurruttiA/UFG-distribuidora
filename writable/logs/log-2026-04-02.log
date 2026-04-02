@@ -118,3 +118,59 @@ in SYSTEMPATH\Router\Router.php on line 768.
  5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
  6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-02 02:22:41 --> ErrorException: Undefined array key "icon"
+[Method: GET, Route: clientes/nuevo_pedido/1]
+in APPPATH\Views\pedidos\nuevo.php on line 49.
+ 1 APPPATH\Views\pedidos\nuevo.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "icon"', 'C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php', 49)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('pedidos/nuevo', [], true)
+ 5 APPPATH\Controllers\Pedidos.php(17): view('pedidos/nuevo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Pedidos->nuevo('1')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pedidos))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-02 02:22:41 --> ErrorException: Undefined array key "icon"
+[Method: GET, Route: clientes/nuevo_pedido/1]
+in APPPATH\Views\pedidos\nuevo.php on line 49.
+ 1 APPPATH\Views\pedidos\nuevo.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "icon"', 'C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php', 49)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('pedidos/nuevo', [], true)
+ 5 APPPATH\Controllers\Pedidos.php(17): view('pedidos/nuevo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Pedidos->nuevo('1')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pedidos))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-02 02:22:41 --> ErrorException: Undefined array key "icon"
+[Method: GET, Route: clientes/nuevo_pedido/1]
+in APPPATH\Views\pedidos\nuevo.php on line 49.
+ 1 APPPATH\Views\pedidos\nuevo.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "icon"', 'C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php', 49)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('pedidos/nuevo', [], true)
+ 5 APPPATH\Controllers\Pedidos.php(17): view('pedidos/nuevo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Pedidos->nuevo('1')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pedidos))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-02 02:22:41 --> ErrorException: Undefined array key "icon"
+[Method: GET, Route: clientes/nuevo_pedido/1]
+in APPPATH\Views\pedidos\nuevo.php on line 49.
+ 1 APPPATH\Views\pedidos\nuevo.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "icon"', 'C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php', 49)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\xampp\\htdocs\\UFG distribuidora\\app\\Views\\pedidos\\nuevo.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('pedidos/nuevo', [], true)
+ 5 APPPATH\Controllers\Pedidos.php(17): view('pedidos/nuevo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Pedidos->nuevo('1')
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pedidos))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
